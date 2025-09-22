@@ -13,7 +13,24 @@ public class StreamCode {
 //        filter();
 //        reduce();
 //        collectorExample();
-        collector();
+//        collector();
+//        skipVsLimit();
+        paginate(1, 2);
+    }
+
+    static void skipVsLimit() {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+
+//        List<Integer> limit = list.stream().limit(2).toList();
+        list = list.stream().skip(3).toList();
+
+        System.out.println(list);
+    }
+
+    static void paginate(int page, int size) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        list = list.stream().skip(page).limit(size).toList();
+        System.out.println(list);
     }
 
     static void collector() {
