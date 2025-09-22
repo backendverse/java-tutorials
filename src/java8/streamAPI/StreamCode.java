@@ -1,16 +1,49 @@
 package java8.streamAPI;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
+import java8.streamAPI.dto.Employee;
+import java8.streamAPI.dto.User;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class StreamCode {
     public static void main(String[] args) {
 //       map();
 //       flatMap();
 //        filter();
-        reduce();
+//        reduce();
+//        collectorExample();
+        collector();
+    }
+
+    static void collector() {
+        List<String> names = List.of("Alex", "Rony", "Edwin", "Alex", "Henry", "Edwin");
+//
+//        Set<String> collect = names.stream()
+//                .map(name -> name.toUpperCase())
+//                .collect(Collectors.toSet());
+
+//        System.out.println(collect);
+
+//        names = names.stream().distinct().toList();
+//        System.out.println(names);
+
+        Map<String, String> collect = names.stream()
+                .collect(Collectors.toMap(name -> name.toLowerCase(), name -> name.toUpperCase(), (prev, latest) -> latest));
+        System.out.println(collect);
+
+
+//        List<Employee> employees = Arrays.asList(
+//                new Employee("Amit", "IT"),
+//                new Employee("Rahul", "HR"),
+//                new Employee("Sita", "IT"),
+//                new Employee("Priya", "HR"),
+//                new Employee("Vikram", "Finance")
+//        );
+//
+//        Map<String, Long> collect = employees.stream().collect(Collectors.groupingBy(e -> e.department(), Collectors.counting()));
+//        System.out.println(collect);
+
     }
 
     static void filter() {
@@ -48,7 +81,6 @@ public class StreamCode {
         System.out.println("Total Sum = " + sum);
     }
 
-
     static void map() {
         List<String> names = List.of("Alex", "Rony", "Edwin", "Henry");
 
@@ -83,5 +115,19 @@ public class StreamCode {
 
         System.out.println(roles);
 
+    }
+
+    static void collectorExample() {
+        List<Employee> employees = Arrays.asList(
+                new Employee("Amit", "IT"),
+                new Employee("Rahul", "HR"),
+                new Employee("Sita", "IT"),
+                new Employee("Priya", "HR"),
+                new Employee("Vikram", "Finance")
+        );
+
+        Map<String, Long> deptCount = employees.stream()
+                .collect(Collectors.groupingBy(e -> e.department(), Collectors.counting()));
+        System.out.println(deptCount);
     }
 }
