@@ -15,7 +15,27 @@ public class StreamCode {
 //        collectorExample();
 //        collector();
 //        skipVsLimit();
-        paginate(1, 2);
+//        paginate(1, 2);
+        anyMatchVsNoneMatch();
+    }
+
+    static void anyMatchVsNoneMatch() {
+//        List<Integer> list = List.of(1, 27, 3, 4, 5);
+//
+//        boolean result = list.stream().anyMatch(data -> {
+//            System.out.println("Condition Data  => " + data);
+//            return data % 2 == 0;
+//        });
+
+        List<String> names = List.of("Alice", "Bob", "Henry");
+
+        boolean result = names.stream().noneMatch(data -> {
+            System.out.println("Condition Data  => " + data);
+            return data.startsWith("o");
+        });
+
+        System.out.println(result);
+
     }
 
     static void skipVsLimit() {
