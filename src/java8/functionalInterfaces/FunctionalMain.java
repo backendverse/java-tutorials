@@ -1,20 +1,60 @@
 package java8.functionalInterfaces;
 
+import java8.functionalInterfaces.dto.UserDTO;
 import java8.functionalInterfaces.interfaces.CustomInterface;
 import java8.functionalInterfaces.interfaces.MyFunctionalInterface;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class FunctionalMain {
 
     public static void main(String[] args) {
 //        functionalInterface();
 //        predicate();
-        function();
+//        function();
+//        supplier();
+        consumer();
+    }
+
+    static void supplier() {
+        Supplier<Integer> supplier = () -> Integer.parseInt("90");
+        System.out.println(supplier.get());
+    }
+
+    static void consumer() {
+//        Consumer<String> before = (str) -> {
+//            System.out.println("Before Consumer");
+//        };
+//
+//        Consumer<String> after = (str) -> {
+//            System.out.println("After Consumer");
+//        };
+//
+//        Consumer<String> finalConsumer = before.andThen(after);
+//        finalConsumer.accept("Hello World");
+
+        UserDTO userRequest = new UserDTO("1", "Alex", "alex123@gmail.com");
+
+        UserDTO entity = new UserDTO();
+        consumerPredicateExecutor(userRequest.getEmail(), FunctionalMain::notEmpty, entity::setEmail);
+        System.out.println(entity.getEmail());
+    }
+
+    static <I> void consumerPredicateExecutor(I input, Predicate<I> ifCondition, Consumer<I> ifFunction) {
+        if (ifCondition.test(input)) {
+            ifFunction.accept(input);
+        }
+    }
+
+    static boolean notEmpty(Object input) {
+        return Objects.nonNull(input);
     }
 
     static void function() {
