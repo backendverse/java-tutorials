@@ -3,6 +3,7 @@ package java8.functionalInterfaces;
 import java8.functionalInterfaces.dto.UserDTO;
 import java8.functionalInterfaces.interfaces.CustomInterface;
 import java8.functionalInterfaces.interfaces.MyFunctionalInterface;
+import java8.functionalInterfaces.interfaces.NotificationService;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +21,13 @@ public class FunctionalMain {
 //        predicate();
 //        function();
 //        supplier();
-        consumer();
+//        consumer();
+        NotificationService notificationService = new NotificationServiceImpl();
+
+        notificationService.sendNotification("Abc");
+        notificationService.sendPushNotification();
+
+        NotificationService.pingEmail("ping email");
     }
 
     static void supplier() {
