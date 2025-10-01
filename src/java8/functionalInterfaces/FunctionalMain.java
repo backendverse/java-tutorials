@@ -1,14 +1,12 @@
 package java8.functionalInterfaces;
 
 import java8.functionalInterfaces.dto.UserDTO;
+import java8.functionalInterfaces.dto.UserRoleDTO;
 import java8.functionalInterfaces.interfaces.CustomInterface;
 import java8.functionalInterfaces.interfaces.MyFunctionalInterface;
-import java8.functionalInterfaces.interfaces.NotificationService;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import javax.swing.text.html.Option;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -22,12 +20,71 @@ public class FunctionalMain {
 //        function();
 //        supplier();
 //        consumer();
-        NotificationService notificationService = new NotificationServiceImpl();
+//        NotificationService notificationService = new NotificationServiceImpl();
+//
+//        notificationService.sendNotification("Abc");
+//        notificationService.sendPushNotification();
+//
+//        NotificationService.pingEmail("ping email");
 
-        notificationService.sendNotification("Abc");
-        notificationService.sendPushNotification();
+        optional();
+    }
 
-        NotificationService.pingEmail("ping email");
+    static void optional() {
+        String data = "Hello";
+//        data = null;
+
+        Optional<String> optional = Optional.ofNullable(data);
+
+//        if (optional.isEmpty()) {
+//            System.out.println("Value is null");
+//            return;
+//        }
+//
+//        if (optional.isPresent()) {
+//            System.out.println(optional.get());
+//        }
+
+//        optional.ifPresent(Inputdata -> {
+//            System.out.println(Inputdata);
+//        });
+
+//        String output = optional.orElse("Empty Data");
+
+
+//        String output = optional.orElseGet(() -> {
+//            return "Custom SUpplier Data";
+//        });
+
+//        System.out.println(output);
+
+//        optional.orElseThrow(() -> new RuntimeException("Null Data Found"));
+
+//        System.out.println(optional.get());
+
+//        String output = optional
+//                .map(inputData -> inputData.toUpperCase())
+//                .orElseGet(() -> "Empty Data");
+
+//        String output = optional
+//                .filter(inputData -> inputData.startsWith("O"))
+//                .map(input -> input.toLowerCase())
+//                .orElseGet(() -> "Empty Data");
+
+        UserRoleDTO userRoleDTO = new UserRoleDTO();
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId("1");
+        userRoleDTO.setUserDTO(userDTO);
+
+        Optional.ofNullable(userRoleDTO)
+                .flatMap(inputData -> Optional.ofNullable(inputData.getUserDTO()))
+                .flatMap(userDTO1 -> Optional.ofNullable(userDTO1.getId()))
+                .map(inputData -> inputData.toLowerCase())
+                .filter(inputData -> !inputData.isEmpty())
+                .ifPresentOrElse(userId -> System.out.println("Got the user Id => ".concat(userId)), () -> {
+                    System.out.println("Empty Id Found");
+                });
+
     }
 
     static void supplier() {
