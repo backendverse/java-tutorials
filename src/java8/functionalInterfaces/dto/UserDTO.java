@@ -9,6 +9,10 @@ public class UserDTO {
     public UserDTO() {
     }
 
+    public UserDTO(String name) {
+        this.name = name;
+    }
+
     public UserDTO(String id, String name, String email) {
         this.id = id;
         this.name = name;

@@ -27,7 +27,16 @@ public class FunctionalMain {
 //
 //        NotificationService.pingEmail("ping email");
 
-        optional();
+//        optional();
+        referenceConcept();
+    }
+
+    static void referenceConcept() {
+//        List<String> names = List.of("Alex", "Bob", "Henry");
+//        names.forEach(name -> System.out.println(name));
+
+        List<String> names = List.of("Alex", "Bob", "Henry");
+        List<UserDTO> userDTOS = names.stream().map(UserDTO::new).toList();
     }
 
     static void optional() {
@@ -107,6 +116,7 @@ public class FunctionalMain {
         UserDTO userRequest = new UserDTO("1", "Alex", "alex123@gmail.com");
 
         UserDTO entity = new UserDTO();
+
         consumerPredicateExecutor(userRequest.getEmail(), FunctionalMain::notEmpty, entity::setEmail);
         System.out.println(entity.getEmail());
     }
