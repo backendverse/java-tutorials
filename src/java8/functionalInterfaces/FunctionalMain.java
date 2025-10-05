@@ -27,7 +27,43 @@ public class FunctionalMain {
 //        referenceConcept();
 //        biPredicate();
 //        biFunction();
-        biConsumer();
+//        biConsumer();
+//        unaryOperator();
+        binaryOperator();
+    }
+
+    static void unaryOperator() {
+        Function<String, String> function = (input) -> input.toUpperCase();
+
+        UnaryOperator<String> unaryOperator = (input) -> input.toUpperCase();
+
+        System.out.println(unaryOperator.apply("hello world this is alex"));
+
+    }
+
+    static void binaryOperator() {
+//        BiFunction<String, String, String> biFunction = (a, b) -> {
+//            return a.toUpperCase() + b.toLowerCase();
+//        };
+//
+//        BinaryOperator<String> binaryOperator = (a, b) -> {
+//            return a.toUpperCase() + b.toLowerCase();
+//        };
+//
+//        System.out.println(binaryOperator.apply("Hello", "World"));
+
+        Comparator<String> lengthComparator = Comparator.comparingInt(String::length);
+
+        BinaryOperator<String> minLengthString = BinaryOperator.minBy(lengthComparator);
+        BinaryOperator<String> maxLengthString = BinaryOperator.maxBy(lengthComparator);
+
+        String str = "Apple";
+        String str2 = "Mango";
+        String str3 = "WaterMelon";
+
+        System.out.println(minLengthString.apply(str3, str));
+        System.out.println(maxLengthString.apply(str3, str2));
+
     }
 
     static void biPredicate() {
