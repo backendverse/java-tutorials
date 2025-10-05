@@ -5,12 +5,8 @@ import java8.functionalInterfaces.dto.UserRoleDTO;
 import java8.functionalInterfaces.interfaces.CustomInterface;
 import java8.functionalInterfaces.interfaces.MyFunctionalInterface;
 
-import javax.swing.text.html.Option;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class FunctionalMain {
 
@@ -28,7 +24,47 @@ public class FunctionalMain {
 //        NotificationService.pingEmail("ping email");
 
 //        optional();
-        referenceConcept();
+//        referenceConcept();
+//        biPredicate();
+//        biFunction();
+        biConsumer();
+    }
+
+    static void biPredicate() {
+//        Predicate<String> predicate = (arg) -> arg.length() == 1;
+//        System.out.println(predicate.test("Hello"));
+
+        BiPredicate<String, Integer> biPredicate = (name, age) -> {
+            return name.length() > 1 && age > 18;
+        };
+
+        System.out.println(biPredicate.test("Alex", 22));
+    }
+
+    static void biFunction() {
+        Function<String, Integer> function = (input) -> Integer.parseInt(input);
+
+        BiFunction<Integer, Integer, Integer> biFunction = (salary, bonus) -> {
+            System.out.println("Salary is => " + salary);
+            System.out.println("Bonus is => " + bonus);
+            return salary + bonus;
+        };
+
+        System.out.println(biFunction.apply(50000, 5000));
+
+    }
+
+    static void biConsumer() {
+//        Consumer<String> consumer = (salary) -> {
+//            System.out.println("Salary is => " + salary);
+//        };
+
+        BiConsumer<Integer, String> biConsumer = (salary, empName) -> {
+            System.out.println("Emp Name Is => " + empName + " And Salary is => " + salary);
+        };
+
+        biConsumer.accept(10000, "Alex");
+
     }
 
     static void referenceConcept() {
