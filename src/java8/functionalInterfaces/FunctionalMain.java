@@ -1,5 +1,6 @@
 package java8.functionalInterfaces;
 
+import java8.functionalInterfaces.dto.Student;
 import java8.functionalInterfaces.dto.UserDTO;
 import java8.functionalInterfaces.dto.UserRoleDTO;
 import java8.functionalInterfaces.interfaces.CustomInterface;
@@ -29,7 +30,34 @@ public class FunctionalMain {
 //        biFunction();
 //        biConsumer();
 //        unaryOperator();
-        binaryOperator();
+//        binaryOperator();
+
+//        comparable();
+        comparator();
+    }
+
+    static void comparable() {
+        List<Student> students = List.of(
+                new Student(3, "student 3"),
+                new Student(1, "student 1"),
+                new Student(2, "student 2"));
+
+        students.stream().sorted().forEach(System.out::println);
+
+    }
+
+    static void comparator() {
+        List<Student> students = List.of(
+                new Student(3, "Chaudhry", 75),
+                new Student(1, "Rahul", 90),
+                new Student(4, "Archit", 75),
+                new Student(2, "Sahil", 82));
+
+        Comparator<Student> comparator = Comparator.comparing(Student::getMarks)
+                .reversed()
+                .thenComparing(Student::getName);
+
+        students.stream().sorted(comparator).forEach(System.out::println);
     }
 
     static void unaryOperator() {
